@@ -82,7 +82,7 @@ func NewIsolateWith(initialHeap uint64, maxHeap uint64) *Isolate {
 	v8once.Do(func() {
 		C.Init()
 	})
-	result := C.NewIsolate(C.ulong(initialHeap), C.ulong(maxHeap))
+	result := C.NewIsolate(C.size_t(initialHeap), C.size_t(maxHeap))
 	iso := &Isolate{
 		ptr:          result.isolate,
 		cbs:          make(map[int]FunctionCallback),
