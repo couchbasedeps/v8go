@@ -1,4 +1,4 @@
-module github.com/snej/v8go
+module github.com/couchbasedeps/v8go
 
 go 1.16
 
