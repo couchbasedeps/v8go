@@ -4,23 +4,14 @@
 
 package v8go
 
+// NOTE: These flags are now for building with Couchbase's build of V8.
+
 //go:generate clang-format -i --verbose -style=Chromium v8go.h v8go.cc
 
-// #cgo CXXFLAGS: -fno-rtti -fPIC -std=c++14 -DV8_COMPRESS_POINTERS -DV8_31BIT_SMIS_ON_64BIT_ARCH -I${SRCDIR}/deps/include -Wall
-// #cgo LDFLAGS: -pthread -lv8
+// #cgo CXXFLAGS: -fno-rtti -fPIC -std=c++17 -DV8_32BIT_SMIS_ON_64BIT_ARCH -I${SRCDIR}/deps/include -Wall
+// #cgo LDFLAGS: -pthread -lv8 -lv8_libplatform
 // #cgo darwin,amd64 LDFLAGS: -L${SRCDIR}/deps/darwin_x86_64
 // #cgo darwin,arm64 LDFLAGS: -L${SRCDIR}/deps/darwin_arm64
 // #cgo linux,amd64 LDFLAGS: -L${SRCDIR}/deps/linux_x86_64 -ldl
 // #cgo linux,arm64 LDFLAGS: -L${SRCDIR}/deps/linux_arm64 -ldl
 import "C"
-
-// These imports forces `go mod vendor` to pull in all the folders that
-// contain V8 libraries and headers which otherwise would be ignored.
-// DO NOT REMOVE
-import (
-	_ "github.com/couchbasedeps/v8go/deps/darwin_arm64"
-	_ "github.com/couchbasedeps/v8go/deps/darwin_x86_64"
-	_ "github.com/couchbasedeps/v8go/deps/include"
-	_ "github.com/couchbasedeps/v8go/deps/linux_arm64"
-	_ "github.com/couchbasedeps/v8go/deps/linux_x86_64"
-)

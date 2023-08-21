@@ -166,7 +166,7 @@ RtnUnboundScript IsolateCompileUnboundScript(IsolatePtr iso,
                                                  opts.cachedData.length);
   }
 
-  ScriptOrigin script_origin(ogn);
+  ScriptOrigin script_origin(iso, ogn);
 
   ScriptCompiler::Source source(src, script_origin, cached_data);
 

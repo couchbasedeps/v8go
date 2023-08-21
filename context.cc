@@ -129,7 +129,7 @@ RtnValue RunScript(ContextPtr ctx, const char* source, int sourceLen,
     return rtn;
   }
 
-  ScriptOrigin script_origin(ogn);
+  ScriptOrigin script_origin(iso, ogn);
   Local<Script> script;
   if (!Script::Compile(_with.local_ctx, src, &script_origin).ToLocal(&script)) {
     rtn.error = _with.exceptionError();

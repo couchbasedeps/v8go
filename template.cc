@@ -20,7 +20,7 @@ struct WithTemplate : public WithIsolate {
 /********** Template **********/
 
 void TemplateFreeWrapper(TemplatePtr tmpl) {
-  tmpl->ptr.Empty();  // Just does `val_ = 0;` without calling V8::DisposeGlobal
+  tmpl->ptr.Clear();  // Just does `location_ = nullptr;` without calling V8::DisposeGlobal
   delete tmpl;
 }
 
